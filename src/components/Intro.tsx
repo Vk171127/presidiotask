@@ -15,7 +15,7 @@ const Intro = () => {
         Showcase Your Work & Get Paid
       </div>
       <div className="text-2xl font-semibold pt-5 text-white text-center">
-        Join Behance, the world's largest creative network
+        Join Behance, the world&apos;s largest creative network
       </div>
       <div className="flex justify-center pt-4">
         <div>
