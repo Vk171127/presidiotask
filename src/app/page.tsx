@@ -13,6 +13,10 @@ const Home = () => {
     ...new Set(Project.map((project) => project.creativeField)),
   ];
 
+  const updateSearchedData = (newData :any) => {
+    setProject(newData);
+  };
+
 
   const filterCat = (cat: any) => {
     const newCat = Project.filter((newval) => newval.creativeField === cat);
@@ -30,7 +34,7 @@ const Home = () => {
           />
         </div>
         <div className="w-[90%]">
-          <Search />
+          <Search updateSearchedData={updateSearchedData} />
         </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 m-4 justify-stretch gap-5">

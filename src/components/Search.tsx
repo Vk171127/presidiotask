@@ -1,14 +1,20 @@
+import { Project } from "@/data/project";
 import React, { useState, useEffect, useRef } from "react";
 import { IoSearch } from "react-icons/io5";
 
-const Search = () => {
+const Search = ({ updateSearchedData }: any) => {
   const [trigger, setTrigger] = useState(false);
   const [suggestionDataFiltered, setSuggestionDataFiltered] = useState([""]);
-  const searchData = ["Branding", "Illustration", "Graphic Design", "UI/UX", "Photography", "Motion Graphics"];
+  const searchData = [
+    ...new Set(Project.map((p) => p.creativeField)),
+    ...new Set(Project.map((p) => p.tools)),
+  ];
   const inputRef = useRef<HTMLInputElement>(null);
 
   const suggestionHandler = (query: string) => {
-    const filterData = searchData.filter((item) => item.toLowerCase().includes(query.toLowerCase()));
+    const filterData = searchData
+      .filter((data) => data.toLowerCase().startsWith(query.toLowerCase()))
+      .slice(0, 5);
     setSuggestionDataFiltered(filterData);
   };
 
@@ -19,8 +25,12 @@ const Search = () => {
   };
 
   const handleSuggestionClick = (suggestion: string) => {
-    console.log(`Clicked on suggestion: ${suggestion}`);
-    setTrigger(false); 
+    const data = Project.filter(
+      (p) => p.creativeField === suggestion || p.tools === suggestion
+    ).slice(0, 5);
+
+    updateSearchedData(data);
+    setTrigger(false);
   };
 
   const handleDocumentClick = (event: MouseEvent) => {
