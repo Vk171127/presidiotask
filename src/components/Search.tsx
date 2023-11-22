@@ -49,7 +49,7 @@ const Search = ({ updateSearchedData }: any) => {
 
   return (
     <div className="p-5">
-      <div className="absolute left-[20rem] top-[26.5rem]">
+      <div className="absolute left-[14rem] top-[26.5rem]">
         <IoSearch />
       </div>
       <div className="w-full border-2 rounded-full bg-white">
